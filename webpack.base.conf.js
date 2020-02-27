@@ -4,6 +4,7 @@ const simpleBuildConfig = require(`${projectRoot}/simple-build-conf.js`);
 const webpack = require('webpack');
 const utils = require('./utils');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 function resolve(dir) {
@@ -74,6 +75,7 @@ const config = {
         ],
     },
     plugins: [
+        new ProgressBarPlugin(),
         new VueLoaderPlugin(),
         new webpack.ProvidePlugin(simpleBuildConfig.provides)
     ],

@@ -6,6 +6,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const simpleBuildConfig = require(`${projectRoot}/simple-build-conf.js`);
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const override = {
     mode: 'production',
@@ -22,6 +24,18 @@ const override = {
                 }
             }
         },
+        minimizer: [
+            new OptimizeCSSAssetsPlugin({}),
+            // UglifyJs do not support ES6+, you can also use babel-minify for better treeshaking: https://github.com/babel/minify
+            new UglifyJsPlugin({
+                uglifyOptions: {
+                    drop_console: true,
+                    warnings: false
+                },
+                sourceMap: true,
+                parallel: true
+            })
+        ]
     },
     plugins: [
         new webpack.HashedModuleIdsPlugin(),
