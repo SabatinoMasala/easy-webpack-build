@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const currentEnv = process.env.NODE_ENV;
 const devWebpack = require('./webpack.dev.conf.js');
 const prdWebpack = require('./webpack.prod.conf.js');
-const config = require('./config');
 const webpackConfig = currentEnv === 'production' ? prdWebpack : devWebpack;
 const fs = require('fs');
 const utils = require('./utils');
@@ -23,9 +22,9 @@ if (currentEnv === 'production') {
         }));
     });
 } else {
-    fs.closeSync(fs.openSync(config.build.hmrFile, 'w'));
-    fs.chmodSync(config.build.hmrFile, '777');
-    console.log('Created hmr file');
+
+    utils.createHmrFile();
+
     const devServerOptions = {
         contentBase: './public',
         hot: true,
@@ -36,9 +35,9 @@ if (currentEnv === 'production') {
         public: 'http://localhost:8080',
         publicPath: 'http://localhost:8080/',
         headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+            'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
         },
     }
     const server = new WebpackDevServer(compiler, devServerOptions);
