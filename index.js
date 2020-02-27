@@ -17,7 +17,7 @@ if (currentEnv === 'production') {
         }
 
         console.log(stats.toString({
-            chunks: true,
+            chunks: false,
             colors: true
         }));
     });

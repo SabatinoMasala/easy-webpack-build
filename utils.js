@@ -7,13 +7,17 @@ exports.assetsPath = function(_path) {
 };
 
 exports.removeHmrFile = function() {
-    if (fs.existsSync(config.build.hmrFile)) {
-        fs.unlinkSync(config.build.hmrFile);
+    if (fs.existsSync(config.hmrFile)) {
+        fs.unlinkSync(config.hmrFile);
     }
 };
 
 exports.createHmrFile = function() {
-    fs.closeSync(fs.openSync(config.build.hmrFile, 'w'));
-    fs.chmodSync(config.build.hmrFile, '777');
+    fs.closeSync(fs.openSync(config.hmrFile, 'w'));
+    fs.chmodSync(config.hmrFile, '777');
     console.log('Created hmr file');
+};
+
+exports.resolve = function resolve(dir) {
+    return path.join(process.cwd(), dir);
 };
