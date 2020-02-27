@@ -25,7 +25,7 @@ const override = {
             }
         },
         minimizer: [
-            new OptimizeCSSAssetsPlugin({}),
+            // new OptimizeCSSAssetsPlugin({}),
             // UglifyJs do not support ES6+, you can also use babel-minify for better treeshaking: https://github.com/babel/minify
             new UglifyJsPlugin({
                 uglifyOptions: {

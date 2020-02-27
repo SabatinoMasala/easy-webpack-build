@@ -11,7 +11,14 @@ function resolve(dir) {
     return path.join(projectRoot, dir);
 }
 
-const vueLoaderConfig = {};
+const vueLoaderConfig = {
+    transformAssetUrls: {
+        video: 'src',
+        source: 'src',
+        img: 'src',
+        image: 'xlink:href'
+    }
+};
 
 const alias = Object.assign({
     '@': resolve('src/js'),
@@ -29,7 +36,6 @@ const config = {
             {
                 test: /\.s?[ac]ss$/i,
                 use: [
-                    'vue-style-loader',
                     styleLoader,
                     'css-loader',
                     {
@@ -52,6 +58,7 @@ const config = {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
+                    esModule: false,
                     limit: 10000,
                     name: utils.assetsPath('img/[name].[hash:7].[ext]')
                 }
@@ -60,6 +67,7 @@ const config = {
                 test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
+                    esModule: false,
                     limit: 10000,
                     name: utils.assetsPath('media/[name].[hash:7].[ext]')
                 }
@@ -68,6 +76,7 @@ const config = {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
+                    esModule: false,
                     limit: 10000,
                     name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
                 }
