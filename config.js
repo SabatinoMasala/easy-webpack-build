@@ -7,6 +7,11 @@ const argv = yargs
         description: 'Config file',
         type: 'string',
     })
+    .option('analyze', {
+        alias: 'a',
+        description: 'Analyze',
+        type: 'boolean',
+    })
     .argv;
 
 let UserConfig = {};
@@ -22,6 +27,7 @@ const BaseConfig = {
     hmrFile: `${projectRoot}/storage/w_hmr`,
     resolve_modules: [],
     vue_only_runtime: false,
+    analyze: argv.analyze,
     config: {
         sassLoader: {}
     }

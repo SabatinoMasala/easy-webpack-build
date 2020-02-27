@@ -17,7 +17,7 @@ if (currentEnv === 'production') {
         }
 
         console.log(stats.toString({
-            chunks: false,
+            chunks: true,
             colors: true
         }));
     });
@@ -39,7 +39,7 @@ if (currentEnv === 'production') {
             'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
             'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
         },
-    }
+    };
     const server = new WebpackDevServer(compiler, devServerOptions);
     server.listen(8080, '127.0.0.1', () => {
         console.log('Starting server on http://localhost:8080');

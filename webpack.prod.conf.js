@@ -3,11 +3,12 @@ const base = require('./webpack.base.conf');
 const webpack = require('webpack');
 const projectRoot = process.cwd();
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const simpleBuildConfig = require(`${projectRoot}/simple-build-conf.js`);
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const ProjectConfig = require('./config');
 
 const override = {
     mode: 'production',
@@ -47,7 +48,6 @@ const override = {
         new ManifestPlugin({
             fileName: 'manifest.json',
             map(item) {
-                console.log('item');
                 if (item.isInitial || item.name.indexOf('vendor.js') !== -1 || item.name.indexOf('vendor.css') !== -1) {
                     const regex = /\.([0-9a-z]+)(?:[\?#]|$)/i;
                     let ext = item.name.match(regex)[0].replace('.', '');
@@ -73,7 +73,11 @@ const override = {
     },
 };
 
-if (!simpleBuildConfig.vue_only_runtime) {
+if (ProjectConfig.analyze) {
+    override.plugins.push(new BundleAnalyzerPlugin());
+}
+
+if (!ProjectConfig.vue_only_runtime) {
     override.resolve = {
         alias: {
             'vue$': 'vue/dist/vue.min'
