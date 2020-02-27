@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.8.4",
     "babel-loader": "^8.0.6",
     "copy-webpack-plugin": "^5.1.1",
