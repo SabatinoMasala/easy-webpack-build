@@ -37,7 +37,12 @@ const config = {
                 test: /\.s?[ac]ss$/i,
                 use: [
                     styleLoader,
-                    'css-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
                     {
                         loader: 'sass-loader?sourceMap',
                         options: simpleBuildConfig.config.sassLoader
