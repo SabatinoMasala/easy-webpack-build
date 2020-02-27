@@ -49,8 +49,8 @@ const override = {
             }
         }),
         new MiniCssExtractPlugin({
-            filename: `dist/[name].[hash].css`,
-            chunkFilename: `dist/[id].[hash].css`
+            filename: `dist/css/[name].[hash].css`,
+            chunkFilename: `dist/css/[id].[hash].css`
         })
     ],
     output: {

@@ -83,7 +83,7 @@ const config = {
         alias
     },
     output: {
-        filename: '[name].js',
+        filename: 'dist/js/[name].js',
         path: '/',
         publicPath: 'http://localhost:8080/',
     },

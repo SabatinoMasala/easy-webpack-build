@@ -1,15 +1,16 @@
 const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
-
 const currentEnv = process.env.NODE_ENV;
-
 const devWebpack = require('./webpack.dev.conf.js');
 const prdWebpack = require('./webpack.prod.conf.js');
-
+const config = require('./config');
 const webpackConfig = currentEnv === 'production' ? prdWebpack : devWebpack;
+const fs = require('fs');
+const utils = require('./utils');
 
 const compiler = webpack(webpackConfig);
 if (currentEnv === 'production') {
+    utils.removeHmrFile();
     compiler.run((err, stats) => {
         if (err) {
             console.error(err);
@@ -22,6 +23,9 @@ if (currentEnv === 'production') {
         }));
     });
 } else {
+    fs.closeSync(fs.openSync(config.build.hmrFile, 'w'));
+    fs.chmodSync(config.build.hmrFile, '777');
+    console.log('Created hmr file');
     const devServerOptions = {
         contentBase: './public',
         hot: true,
