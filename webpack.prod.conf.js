@@ -5,14 +5,27 @@ const projectRoot = process.cwd();
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ProjectConfig = require('./config');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const override = {
     mode: 'production',
     optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin({
+            extractComments: true,
+            cache: true,
+            parallel: true,
+            sourceMap: true,
+            terserOptions: {
+                extractComments: 'all',
+                compress: {
+                    drop_console: true,
+                },
+            }
+        })],
         runtimeChunk: {
             name: 'manifest'
         },
@@ -24,17 +37,7 @@ const override = {
                     chunks: 'all'
                 }
             }
-        },
-        minimizer: [
-            new UglifyJsPlugin({
-                uglifyOptions: {
-                    drop_console: true,
-                    warnings: false
-                },
-                sourceMap: true,
-                parallel: true
-            })
-        ]
+        }
     },
     plugins: [
         new webpack.HashedModuleIdsPlugin(),
