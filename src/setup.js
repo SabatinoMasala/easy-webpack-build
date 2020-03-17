@@ -98,5 +98,7 @@ module.exports = async function(type) {
         console.log(chalk.green('project has been set up, please run:'));
         console.log(chalk.yellow('yarn install'));
         console.log(chalk.yellow('composer update'));
+        console.log(chalk.yellow(`To add stylesheet, use: {!! ewb()->css('/dist/css/styles.css') !!}`));
+        console.log(chalk.yellow(`To add scripts, use: {!! ewb()->scripts() !!}`));
     }
 };
