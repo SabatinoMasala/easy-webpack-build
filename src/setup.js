@@ -47,6 +47,9 @@ async function mergePackageJson() {
     ['dependencies', 'devDependencies'].forEach(key => {
         mergedPackage[key] = Object.assign(projectPackage[key] || {}, buildPackage[key]);
     });
+    if (mergedPackage.devDependencies['laravel-mix']) {
+        delete mergedPackage.devDependencies['laravel-mix'];
+    }
     return new Promise((resolve, reject) => {
         fs.writeFile(dest, JSON.stringify(mergedPackage, null, 4), function (err) {
             if (err) {
