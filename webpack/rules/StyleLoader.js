@@ -1,4 +1,4 @@
-const ProjectConfig = require('../config');
+const ProjectConfig = require('../../src/config');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // In production we'll extract CSS to files, in development we just use style-loader for convenience

@@ -7,7 +7,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const ProjectConfig = require('./config');
+const ProjectConfig = require('../src/config');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const override = {

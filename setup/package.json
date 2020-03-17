@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "dev": " node ./node_modules/easy-webpack-build",
+    "build": "NODE_ENV=production node ./node_modules/easy-webpack-build"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
+    "@babel/preset-env": "^7.7.7",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-runtime": "^6.23.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1"
+  }
+}

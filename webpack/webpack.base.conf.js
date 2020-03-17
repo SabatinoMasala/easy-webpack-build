@@ -1,14 +1,14 @@
 const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const utils = require('./utils');
+const utils = require('../src/utils');
 
 const StyleLoader = require('./rules/StyleLoader');
 const BabelLoader = require('./rules/BabelLoader');
 const UrlLoader = require('./rules/UrlLoader');
 const VueLoader = require('./rules/VueLoader');
 
-const ProjectConfig = require('./config');
+const ProjectConfig = require('../src/config');
 
 const alias = Object.assign({
     '@': utils.resolve('src/js'),
