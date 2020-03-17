@@ -93,7 +93,8 @@ module.exports = async function(type) {
         await copyDir('src');
         await copyFile('.babelrc');
         await copyFile('simple-build-conf.js');
-        await mergePackageJson();
+        // await mergePackageJson();
+        await copyFile('package.json');
         await mergeComposerJson();
         console.log(chalk.green('project has been set up, please run:'));
         console.log(chalk.yellow('yarn install'));
