@@ -16,6 +16,15 @@ module.exports = function() {
                 }
             },
             {
+                loader: 'postcss-loader',
+                options: {
+                    plugins: [
+                        require('autoprefixer')
+                    ],
+                    sourceMap: true
+                }
+            },
+            {
                 loader: 'sass-loader?sourceMap',
                 options: ProjectConfig.config.sassLoader
             }
