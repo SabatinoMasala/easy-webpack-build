@@ -11,8 +11,13 @@ module.exports = function(env) {
     if (env === 'production') {
         utils.removeHmrFile();
         compiler.run((err, stats) => {
+
             if (err) {
-                console.error(err);
+                console.error(err.stack || err);
+                if (err.details) {
+                    console.error(err.details);
+                }
+                process.exit(1);
                 return;
             }
 
@@ -20,6 +25,11 @@ module.exports = function(env) {
                 chunks: true,
                 colors: true
             }));
+
+            if (stats.hasErrors()) {
+                console.log('Stats has errors, exiting');
+                process.exit(1);
+            }
         });
     } else {
 
