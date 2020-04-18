@@ -57,7 +57,7 @@ const override = {
                     if (ext.indexOf('map') !== -1) {
                         ext = 'js';
                     }
-                    item.name = `dist/${ext}/${item.name}`;
+                    item.name = `${ProjectConfig.output}/${ext}/${item.name}`;
                 }
                 item.name = `/${item.name}`;
                 return item;
