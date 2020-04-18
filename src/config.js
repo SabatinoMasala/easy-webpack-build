@@ -32,6 +32,9 @@ const BaseConfig = {
     analyze: argv.analyze,
     config: {
         sassLoader: {}
+    },
+    devServer: {
+        port: 8080
     }
 };
 

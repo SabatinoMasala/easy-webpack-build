@@ -35,7 +35,7 @@ const config = {
     output: {
         filename: `${ProjectConfig.output}/js/[name].js`,
         path: '/',
-        publicPath: 'http://localhost:8080/',
+        publicPath: `http://localhost:${ProjectConfig.devServer.port}/`,
     },
 };
 

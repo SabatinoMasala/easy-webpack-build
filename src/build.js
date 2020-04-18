@@ -4,6 +4,7 @@ const devWebpack = require('../webpack/webpack.dev.conf.js');
 const prdWebpack = require('../webpack/webpack.prod.conf.js');
 const fs = require('fs');
 const utils = require('./utils');
+const ProjectConfig = require('../src/config');
 
 module.exports = function(env) {
     const webpackConfig = env === 'production' ? prdWebpack : devWebpack;
@@ -42,8 +43,8 @@ module.exports = function(env) {
             stats: {
                 colors: true,
             },
-            public: 'http://localhost:8080',
-            publicPath: 'http://localhost:8080/',
+            public: `http://localhost:${ProjectConfig.devServer.port}`,
+            publicPath: `http://localhost:${ProjectConfig.devServer.port}`,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
@@ -51,8 +52,8 @@ module.exports = function(env) {
             },
         };
         const server = new WebpackDevServer(compiler, devServerOptions);
-        server.listen(8080, '127.0.0.1', () => {
-            console.log('Starting server on http://localhost:8080');
+        server.listen(ProjectConfig.devServer.port, '127.0.0.1', () => {
+            console.log(`Starting server on http://localhost:${ProjectConfig.devServer.port}`);
         });
 
     }
