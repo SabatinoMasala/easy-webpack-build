@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 exports.assetsPath = function(_path) {
-    return path.posix.join('dist', _path);
+    return path.posix.join(config.output, _path);
 };
 
 exports.removeHmrFile = function() {

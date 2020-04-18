@@ -44,12 +44,12 @@ const override = {
         new CopyWebpackPlugin([
             {
                 from: `${projectRoot}/src/static`,
-                to: 'dist',
+                to: ProjectConfig.output,
                 ignore: ['.*']
             }
         ]),
         new ManifestPlugin({
-            fileName: 'manifest.json',
+            fileName: ProjectConfig.manifest,
             map(item) {
                 if (item.isInitial || item.name.indexOf('vendor.js') !== -1 || item.name.indexOf('vendor.css') !== -1) {
                     const regex = /\.([0-9a-z]+)(?:[\?#]|$)/i;
@@ -64,13 +64,13 @@ const override = {
             }
         }),
         new MiniCssExtractPlugin({
-            filename: `dist/css/[name].[hash].css`,
-            chunkFilename: `dist/css/[id].[hash].css`
+            filename: `${ProjectConfig.output}/css/[name].[hash].css`,
+            chunkFilename: `${ProjectConfig.output}/css/[id].[hash].css`
         })
     ],
     output: {
-        filename: `dist/[name].[hash].js`,
-        chunkFilename: `dist/[id].[hash].js`,
+        filename: `${ProjectConfig.output}/[name].[hash].js`,
+        chunkFilename: `${ProjectConfig.output}/[id].[hash].js`,
         path: `${projectRoot}/public`,
         publicPath: '/',
     },

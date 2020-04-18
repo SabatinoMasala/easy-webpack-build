@@ -23,6 +23,8 @@ try {
 
 const BaseConfig = {
     entry: [],
+    output: 'dist',
+    manifest: 'manifest.json',
     alias: {},
     hmrFile: `${projectRoot}/storage/w_hmr`,
     resolve_modules: [],

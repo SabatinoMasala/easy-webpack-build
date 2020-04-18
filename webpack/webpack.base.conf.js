@@ -33,7 +33,7 @@ const config = {
         alias
     },
     output: {
-        filename: 'dist/js/[name].js',
+        filename: `${ProjectConfig.output}/js/[name].js`,
         path: '/',
         publicPath: 'http://localhost:8080/',
     },
