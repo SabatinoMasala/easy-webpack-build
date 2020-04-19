@@ -9,6 +9,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ProjectConfig = require('../src/config');
 const TerserPlugin = require('terser-webpack-plugin');
+const S3Plugin = require('webpack-s3-plugin');
 
 const override = {
     mode: 'production',
@@ -72,12 +73,28 @@ const override = {
         filename: `${ProjectConfig.output}/[name].[hash].js`,
         chunkFilename: `${ProjectConfig.output}/[id].[hash].js`,
         path: `${projectRoot}/public`,
-        publicPath: '/',
+        publicPath: ProjectConfig.publicPath,
     },
 };
 
 if (ProjectConfig.analyze) {
     override.plugins.push(new BundleAnalyzerPlugin());
+}
+
+if (ProjectConfig.s3.enabled) {
+    override.plugins.push(new S3Plugin({
+        s3Options: {
+            accessKeyId: ProjectConfig.s3.accessKeyId,
+            secretAccessKey: ProjectConfig.s3.secretAccessKey,
+            region: ProjectConfig.s3.region
+        },
+        s3UploadOptions: {
+            Bucket: ProjectConfig.s3.bucket
+        },
+        cdnizerOptions: {
+            defaultCDNBase: ProjectConfig.cdnBase
+        }
+    }));
 }
 
 if (!ProjectConfig.vue_only_runtime) {

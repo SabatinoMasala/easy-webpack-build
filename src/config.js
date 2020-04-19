@@ -24,6 +24,7 @@ try {
 const BaseConfig = {
     entry: [],
     output: 'dist',
+    publicPath: '/',
     manifest: 'manifest.json',
     alias: {},
     hmrFile: `${projectRoot}/storage/w_hmr`,
@@ -35,6 +36,14 @@ const BaseConfig = {
     },
     devServer: {
         port: 8080
+    },
+    s3: {
+        enabled: false,
+        bucket: 'your-bucket',
+        accessKeyId: 'access-key',
+        secretAccessKey: 'secret-key',
+        cdnBase: 'https://foo.bar',
+        region: 'eu-central-1'
     }
 };
 
